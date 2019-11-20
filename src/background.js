@@ -29,11 +29,14 @@ protocol.registerStandardSchemes(['app'], {
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 600,
-    webPreferences: {
-      nodeIntegration: true
-    }
+    frame: false,
+    resizable: false,
+    center: true,
+    //transparent:true,
+    //添加app的ready-to-show事件监，防止开启的白色
+    show: false
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -42,7 +45,7 @@ function createWindow() {
     if (!process.env.IS_TEST) {
       win.webContents.openDevTools()
       BrowserWindow.addDevToolsExtension(
-        "C:/Users/admin/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.1.1_0"
+        "C:/Users/admin/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.3.2_0"
       );
     }
   } else {
@@ -50,10 +53,11 @@ function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
+  //win.webContents.openDevTools()
 
-
-
-
+  win.on('ready-to-show', () => {
+    win.show()
+  })
   win.on('closed', () => {
     win = null
   })
@@ -90,9 +94,9 @@ app.on('ready', async () => {
 
   }
   createWindow()
-  setTimeout(() => {
-    updateHandle(win)
-  }, 1000);
+  // setTimeout(() => {
+  //   updateHandle(win)
+  // }, 1000);
 
 })
 
@@ -114,4 +118,13 @@ if (isDevelopment) {
 
 ipcMain.on('OPEN_DEVTOOLS', () => {
   win.webContents.openDevTools()
+})
+ipcMain.on('HIDE_WINDOW', () => {
+  win.minimize()
+
+
+ 
+})
+ipcMain.on('CLOSE_WINDOW', () => {
+  app.quit()
 })

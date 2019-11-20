@@ -1,0 +1,23 @@
+{
+  "id": "1459175",
+  "name": "储运计算器",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7548848",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "7549346",
+      "name": "关闭",
+      "font_class": "RectangleCopy",
+      "unicode": "e6a1",
+      "unicode_decimal": 59041
+    }
+  ]
+}
