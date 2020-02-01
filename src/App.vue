@@ -6,7 +6,7 @@
 
 
 <script>
-import { ffiApi } from 'src/api'
+
 const { ipcRenderer } = require('electron')
 const fa = require('fs')
 export default {

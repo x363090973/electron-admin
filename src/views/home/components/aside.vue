@@ -1,61 +1,67 @@
 <template>
-  <div class='aside'>
-    <el-menu default-active="2"
-             class="el-menu-vertical-demo">
-      <el-submenu v-for="item in allEquations"
-                  :key="item.type"
-                  :index="item.type">
-        <template slot="title">
-          <span style="font-wight:bolder">{{item.type}}</span>
-        </template>
-        <el-menu-item v-for="equation in item.equations"
-                      :key="equation.name"
-                      @click.native="handleClick(equation)"
-                      :index="equation.name">
-          {{equation.name}}
-        </el-menu-item>
-      </el-submenu>
-
-    </el-menu>
+  <div class="aside">
+    <el-input
+      placeholder="搜素名称"
+      prefix-icon="el-icon-search"
+      v-model="serchStr"
+      style="margin-bottom:20px"
+    >
+    </el-input>
+    <el-button type="primary" style="margin-bottom:20px;width:100%">添加资料</el-button>
+    <div class="list">
+      <div v-for="(item, index) in 20" :class="{ item: true, active: true }" v-bind:key="index">
+        {{ item }}
+      </div>
+    </div>
+    <!-- <el-button type="primary" style="margin-bottom:20px;width:100%">导出资料</el-button> -->
   </div>
 </template>
 
 <script>
-
-const { ipcRenderer } = require('electron')
-import { allEquations } from 'src/localData'
-import { DataService } from 'src/service'
+const { ipcRenderer } = require("electron");
+import { materials } from "src/localData";
+import { DataService } from "src/service";
 
 export default {
-  data () {
+  data() {
     return {
-      allEquations: allEquations
-    }
+      materials: materials,
+      serchStr: ""
+    };
   },
 
   components: {},
 
   computed: {},
 
-  mounted () {
-
-  },
+  mounted() {},
 
   methods: {
-
-    handleClick (equation) {
-
-      DataService.currentEquation = equation
+    handleClick(equation) {
+      DataService.material = equation;
     }
-
   }
-}
-
+};
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "src/styles/variables.scss";
 .aside {
   height: 100%;
-  
+  .list {
+    height: 400px;
+    overflow: auto;
+    .item {
+      cursor: pointer;
+      &:hover {
+        color: #8dbcfc;
+        background-color: #e8f3fe;
+      }
+    }
+
+    .active {
+      color: #1dbcfc;
+      background-color: #e8f3fe;
+    }
+  }
 }
 </style>

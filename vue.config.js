@@ -44,15 +44,15 @@ module.exports = {
       }],
     },
     //vue调试模式
-     devtool: 'source-map'
+    devtool: 'source-map'
   },
   pluginOptions: {
     electronBuilder: {
       builderOptions: {
         // options placed here will be merged with default configuration and passed to electron-builder
         // Detail: https://www.electron.build/configuration/configuration
-        "appId": "com.example.aDemo",
-        "productName": "小徐储运计算器", //项目名，也是生成的安装文件名，即aDemo.exe
+        "appId": "com.example.yixingyouqi",
+        "productName": "易行油气储运材料检索录", //项目名，也是生成的安装文件名，即aDemo.exe
         // "publish": [{
         //   "provider": "github",
         //   owner: 'x363090973', // 拥有者

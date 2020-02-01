@@ -1,7 +1,7 @@
 import makeReactive from "./makeReactive";
 
 import {
-  allEquations
+  materials
 } from 'src/localData'
 
 class DataService {
@@ -9,7 +9,7 @@ class DataService {
 
   constructor() {
     /**当前显示的公式 */
-    this.currentEquation = allEquations[0].equations[0]
+    this.currentMaterial = materials[0]
 
   }
 

@@ -45,7 +45,7 @@ function createWindow() {
     if (!process.env.IS_TEST) {
       win.webContents.openDevTools()
       BrowserWindow.addDevToolsExtension(
-        "C:/Users/admin/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.3.2_0"
+        "C:/Users/Administrator/AppData/Local/Google/Chrome/User Data/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/5.3.3_0"
       );
     }
   } else {
@@ -123,7 +123,7 @@ ipcMain.on('HIDE_WINDOW', () => {
   win.minimize()
 
 
- 
+
 })
 ipcMain.on('CLOSE_WINDOW', () => {
   app.quit()
