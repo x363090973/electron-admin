@@ -36,7 +36,10 @@ function createWindow() {
     center: true,
     //transparent:true,
     //添加app的ready-to-show事件监，防止开启的白色
-    show: false
+    show: false,
+    webPreferences: {
+      webSecurity: false
+    }
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -57,6 +60,7 @@ function createWindow() {
 
   win.on('ready-to-show', () => {
     win.show()
+
   })
   win.on('closed', () => {
     win = null

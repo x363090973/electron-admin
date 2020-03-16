@@ -1,6 +1,6 @@
 {
-  "name": "electron-version4",
-  "version": "1.0.0",
+  "name": "youqichuyun-tushu",
+  "version": "1.0.1",
   "private": false,
   "scripts": {
     "lint": "vue-cli-service lint",

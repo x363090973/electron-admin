@@ -1,16 +1,19 @@
 <template>
   <div class="aside">
-    <el-input
-      placeholder="搜素名称"
-      prefix-icon="el-icon-search"
-      v-model="serchStr"
-      style="margin-bottom:20px"
-    >
+    <el-input placeholder="搜素名称"
+              prefix-icon="el-icon-search"
+              v-model="serchStr"
+              style="margin-bottom:20px">
     </el-input>
-    <el-button type="primary" style="margin-bottom:20px;width:100%">添加资料</el-button>
+    <el-button type="primary"
+               style="margin-bottom:20px;width:100%"
+               @click="createMaterial">添加资料</el-button>
     <div class="list">
-      <div v-for="(item, index) in 20" :class="{ item: true, active: true }" v-bind:key="index">
-        {{ item }}
+      <div v-for="(item, index) in materials"
+           :class="{ item: true, active: item.name === currentMaterial.name }"
+           @click="swithMaterial(item)"
+           v-bind:key="index">
+        {{ item.name }}
       </div>
     </div>
     <!-- <el-button type="primary" style="margin-bottom:20px;width:100%">导出资料</el-button> -->
@@ -19,26 +22,48 @@
 
 <script>
 const { ipcRenderer } = require("electron");
-import { materials } from "src/localData";
+import { materials, BlankMaterial } from "src/localData";
 import { DataService } from "src/service";
 
 export default {
-  data() {
+  data () {
     return {
-      materials: materials,
+
       serchStr: ""
     };
   },
 
   components: {},
 
-  computed: {},
+  computed: {
+    materials () {
+      return DataService.materials.filter(e =>
+        e.name.includes(this.serchStr)
+      )
+    },
+    currentMaterial () {
+      return DataService.currentMaterial;
+    },
 
-  mounted() {},
+  },
+
+  mounted () {
+    console.log('materials', materials)
+  },
 
   methods: {
-    handleClick(equation) {
+    handleClick (equation) {
       DataService.material = equation;
+    },
+    swithMaterial (material) {
+
+      DataService.currentShowType = 'info'
+      DataService.currentMaterial = material
+    },
+    createMaterial () {
+
+      DataService.cacheMaterial = new BlankMaterial()
+      DataService.currentShowType = 'edit'
     }
   }
 };
